@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">待办</string>
+    <string name="add">添加</string>
+    <string name="hint">输入待办内容</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
+</resources>
