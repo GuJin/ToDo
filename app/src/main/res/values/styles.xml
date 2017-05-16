@@ -1,10 +1,8 @@
 <resources>
 
-    <style name="AppTheme" parent="Theme.AppCompat.Dialog">
+    <style name="AppTheme" parent="@android:style/Theme.Material.Dialog.NoActionBar">
         <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="colorPrimary">@android:color/transparent</item>
-        <item name="colorPrimaryDark">@android:color/transparent</item>
-        <item name="colorAccent">@android:color/transparent</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
     </style>
 
 </resources>
