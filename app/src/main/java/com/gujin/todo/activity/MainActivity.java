@@ -74,7 +74,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         intent.putExtra(ConfirmActivity.ID, id);
 
         Notification.Builder builder = new Notification.Builder(this).
-                setSmallIcon(R.drawable.small_icon).
+                setSmallIcon(R.drawable.ic_notific).
                 setContentTitle(mContent).
                 setContentText("任务完成后请点击").
                 setContentIntent(PendingIntent.getActivity(this, id, intent, PendingIntent.FLAG_CANCEL_CURRENT));
