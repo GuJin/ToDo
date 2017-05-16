@@ -8,7 +8,8 @@ import android.widget.TextView;
 import com.gujin.todo.R;
 
 public class ConfirmActivity extends BaseActivity implements View.OnClickListener {
-
+    public static final String CONTENT = "content";
+    public static final String ID = "id";
     private TextView mTvContent;
 
     @Override
@@ -28,7 +29,7 @@ public class ConfirmActivity extends BaseActivity implements View.OnClickListene
     }
 
     private void setContent() {
-        mTvContent.setText("已完成 " + getIntent().getStringExtra("msg") + " ?");
+        mTvContent.setText("已完成 " + getIntent().getStringExtra(CONTENT) + " ?");
     }
 
     private void setListener() {
@@ -51,6 +52,6 @@ public class ConfirmActivity extends BaseActivity implements View.OnClickListene
 
     private void cancelNotification() {
         NotificationManager notificationManager = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.cancel(getIntent().getIntExtra("id", 0));
+        notificationManager.cancel(getIntent().getIntExtra(ID, 0));
     }
 }

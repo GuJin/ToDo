@@ -45,6 +45,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             case R.id.btn_add:
                 if (!isContentEmpty()) {
                     addNotification();
+                    finish();
                 } else {
                     ToastUtil.show("内容不能为空");
                 }
@@ -58,11 +59,19 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void addNotification() {
-        //获取已添加的待办数量作为ID使用
-        int id = SharedPreUtils.getInt(SharePerConstant.ID, 0);
+        int id = getId();
+        Notification notification = buildNotification(id);
+        notification.flags = Notification.FLAG_ONGOING_EVENT;
+        NotificationManager notificationManager = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(id, notification);
+
+        SharedPreUtils.saveInt(SharePerConstant.ID, ++id);
+    }
+
+    private Notification buildNotification(int id) {
         Intent intent = new Intent(this, ConfirmActivity.class);
-        intent.putExtra("msg", mContent);
-        intent.putExtra("id", id);
+        intent.putExtra(ConfirmActivity.CONTENT, mContent);
+        intent.putExtra(ConfirmActivity.ID, id);
 
         Notification.Builder builder = new Notification.Builder(this).
                 setSmallIcon(R.drawable.small_icon).
@@ -70,15 +79,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 setContentText("任务完成后请点击").
                 setContentIntent(PendingIntent.getActivity(this, id, intent, PendingIntent.FLAG_CANCEL_CURRENT));
 
-        Notification notification = builder.build();
-        notification.flags = Notification.FLAG_ONGOING_EVENT;
-        NotificationManager notificationManager = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(id, notification);
-        //更新待办数量
+        return builder.build();
+    }
+
+    private int getId() {
+        int id = SharedPreUtils.getInt(SharePerConstant.ID, 0);
         if (id == Integer.MAX_VALUE) {
             id = 0;
         }
-        SharedPreUtils.saveInt(SharePerConstant.ID, ++id);
-        finish();
+        return id;
     }
 }
