@@ -17,7 +17,7 @@ public abstract class BaseActivity extends Activity {
         setWindowWidth();
     }
 
-    protected void setWindowWidth() {
+    private void setWindowWidth() {
         Point point = new Point();
         getWindowManager().getDefaultDisplay().getSize(point);
         int width = point.x;

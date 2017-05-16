@@ -35,7 +35,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         setListener();
     }
 
-    public void setListener() {
+    private void setListener() {
         findViewById(R.id.btn_add).setOnClickListener(this);
     }
 

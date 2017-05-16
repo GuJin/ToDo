@@ -31,7 +31,7 @@ public class ConfirmActivity extends BaseActivity implements View.OnClickListene
         mTvContent.setText("已完成 " + getIntent().getStringExtra("msg") + " ?");
     }
 
-    public void setListener() {
+    private void setListener() {
         findViewById(R.id.btn_confirm).setOnClickListener(this);
         findViewById(R.id.btn_cancel).setOnClickListener(this);
     }
